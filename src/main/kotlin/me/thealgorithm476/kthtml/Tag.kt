@@ -10,7 +10,7 @@ package me.thealgorithm476.kthtml
  * @property id The id of this element
  * @property classes An Array of classes that this element has
  * @property attributes An Array of key-value pairs that represent the attributes of this class
- * @since 1.0
+ * @since 1.0.0
  */
 abstract class Tag(val name: String, val id: String? = null, val classes: Array<String> = emptyArray(), val attributes: Array<Pair<String, String?>> = emptyArray()) {
     /**
@@ -19,7 +19,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
      * When the id is null, an empty string will be returned.
      *
      * @return The String representation of the id of the tag
-     * @since 1.0
+     * @since 1.0.0
      */
     protected fun printId(): String = if (id == null) "" else "id=\"$id\""
 
@@ -29,7 +29,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
      * If this tag has no classes set, an empty string will be returned.
      *
      * @return The String representation of the classes of the tag
-     * @since 1.0
+     * @since 1.0.0
      */
     protected fun printClasses(): String {
         if (classes.isEmpty()) return ""
@@ -42,7 +42,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
      * If this tag has no attributes set, an empty string will be returned
      *
      * @return The String representation of attributes of the tag
-     * @since 1.0
+     * @since 1.0.0
      */
     protected fun printAttributes(): String = attributes.filter { (_, value) -> value != null }.joinToString(" ") { (key, value) -> "$key=\"$value\"" }
 
@@ -51,7 +51,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
      *
      * @param builder The StringBuilder used for building this Tree. The result will be directly added to this builder
      * @param indent The indentation this toString call uses. Used internally to manage the right indentation.
-     * @since 1.0
+     * @since 1.0.0
      */
     abstract fun toString(builder: StringBuilder, indent: String = "")
 
@@ -59,7 +59,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
      * Constructs an HTML tree, all on one single line, without any spaces between elements. A minified representation of the tree.
      *
      * @param builder The StringBuilder used for building this tree. The result will be directly added to this builder
-     * @since 1.0
+     * @since 1.0.0
      */
     abstract fun minified(builder: StringBuilder)
 }
@@ -71,7 +71,7 @@ abstract class Tag(val name: String, val id: String? = null, val classes: Array<
  * This 'tag' is mainly used for adding text directly to the tree, without wrapping it into a paragraph or span.
  *
  * @property content The text that should be inlined into the HTML tree.
- * @since 1.0
+ * @since 1.0.0
  */
 class PlainTag(private val content: String) : Tag(name = "_plain") {
     override fun toString(builder: StringBuilder, indent: String) { builder.append("$indent$content\n") }
@@ -84,7 +84,7 @@ class PlainTag(private val content: String) : Tag(name = "_plain") {
  * Tag class used for elements that don't have a closing tag, and are self-enclosed.
  *
  * @property slash Whether or not the ending of the tag should be a slash or not
- * @since 1.0
+ * @since 1.0.0
  */
 class VoidTag(name: String, private val slash: Boolean = false, id: String? = null, classes: Array<String> = emptyArray(), attributes: Array<Pair<String, String?>> = emptyArray()) : Tag(name = name, id = id, classes = classes, attributes = attributes) {
     private fun generateContent(): String = arrayOf(name, printId(), printClasses(), printAttributes(), (if (slash) "/" else "")).filter { it.isNotEmpty() }.joinToString(separator = " ")
@@ -108,7 +108,7 @@ class ContentTag(name: String, private val content: String, id: String? = null, 
  * Tag class used for elements that hold other elements.
  *
  * @property children The children of this element
- * @since 1.0
+ * @since 1.0.0
  */
 open class ContainerTag(name: String, id: String? = null, classes: Array<String> = emptyArray(), attributes: Array<Pair<String, String?>> = emptyArray()) : Tag(name = name, id = id, classes = classes, attributes = attributes) {
     protected val children: MutableList<Tag> = ArrayList()
@@ -118,7 +118,7 @@ open class ContainerTag(name: String, id: String? = null, classes: Array<String>
      *
      * @param child The tag to add
      * @return Whether or not adding the element was a success
-     * @since 1.0
+     * @since 1.0.0
      */
     fun appendChild(child: Tag): Boolean = children.add(child)
 
@@ -148,7 +148,7 @@ open class ContainerTag(name: String, id: String? = null, classes: Array<String>
  *
  * It holds the capabilities to convert the abstract tree of elements into an HTML tree as a String.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 class HtmlTag(id: String? = null, classes: Array<String> = emptyArray(), xmlns: String? = null, lang: String? = null) : ContainerTag(name = "html", id = id, classes = classes, attributes = arrayOf(Pair("xmlns", xmlns), Pair("lang", lang))) {
     /**
@@ -156,7 +156,7 @@ class HtmlTag(id: String? = null, classes: Array<String> = emptyArray(), xmlns: 
      *
      * @param minified Whether or not this tree should be minified when converting
      * @return The HTML Tree as a String
-     * @since 1.0
+     * @since 1.0.0
      */
     fun toString(minified: Boolean = false): String = buildString { if (minified) minified(this) else toString(this) }
 
@@ -183,7 +183,7 @@ internal fun ContainerTag.container(name: String, id: String? = null, classes: A
  * Inserts a Plain Element into the tree. This element contains no extra data, and is just some text that will be inlined into the tree
  *
  * @param content The text to be inlined
- * @since 1.0
+ * @since 1.0.0
  */
 fun ContainerTag._plain(content: String) {
     val tag: PlainTag = PlainTag(content = content)
