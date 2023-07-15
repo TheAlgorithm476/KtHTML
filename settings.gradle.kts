@@ -1,1 +1,1 @@
-rootProject.name = "KtHTML"
+rootProject.name = "kthtml"
