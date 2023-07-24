@@ -30,7 +30,7 @@ repositories {
 ```
 ```kt
 dependencies {
-    implementation("me.thealgorithm476:kthtml:1.0.0")
+    implementation("me.thealgorithm476:kthtml:1.0.1")
 }
 ```
 ```kt
@@ -50,7 +50,7 @@ kotlin {
 <dependency>
     <groupId>me.thealgorithm476</groupId>
     <artifactId>kthtml</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -171,3 +171,6 @@ You can also download pre-built JARs on the [OctanDevelopment Maven](https://mav
 
 ### Contributing
 Contributions are always welcome! Please open a pull request to discuss what you want to see changed.
+
+### Credits
+Much of the KtHTML documentation, especially the comments regarding HTML tags, are inspired by the [MDN Web Docs](https://developer.mozilla.org/).

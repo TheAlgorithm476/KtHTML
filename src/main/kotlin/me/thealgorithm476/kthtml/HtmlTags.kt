@@ -46,6 +46,41 @@ fun ContainerTag.abbr(
 ) = content(name = "abbr", content = content, id = id, classes = classes, attributes = arrayOf(Pair("title", title)))
 
 /**
+ * Contact Address element. Represents that the enclosed elements provide contact information.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.address(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "address", id = id, classes = classes, children = children)
+
+/**
+ * Article Contents element. Represents a self-contained composition in a document, page, application, or site.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.article(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "article", id = id, classes = classes, children = children)
+
+/**
+ * Aside element. Represents a portion of a document whose content is only indirectly related to the main content.
+ *
+ * Usually represented as sidebars or call-out boxes.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.aside(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "aside", id = id, classes = classes, children = children)
+
+/**
  * Bring Attention To element. Represents an element that should draw the reader's attention to its contents.
  *
  * Usually represented as bold text.
@@ -57,6 +92,30 @@ fun ContainerTag.b(
     id: String? = null,
     classes: Array<String> = emptyArray()
 ) = content(name = "b", content = content, id = id, classes = classes)
+
+/**
+ * Bidirectional Isolate element. Represents text that should be treated in isolation from its surrounding text
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.bdi(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "bdi", id = id, classes = classes, children = children)
+
+/**
+ * Block Quotation element. Indicates that the enclosed elements are an extended quotation.
+ *
+ * @param cite A URL designating a source document for the quoted information.
+ * @since 1.0.1
+ */
+fun ContainerTag.blockquote(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    cite: String? = null,
+    children: ContainerTag.() -> Unit
+) = container(name = "blockquote", id = id, classes = classes, children = children, attributes = arrayOf(Pair("cite", cite)))
 
 /**
  * Document Body element. Represents the content of an HTML Document.
@@ -81,6 +140,74 @@ fun ContainerTag.br(
 ) = void(name = "br", slash = slash, id = id, classes = classes)
 
 /**
+ * Button element. Represents an interactive element activated by a user.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.button(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "button", content = content, id = id, classes = classes)
+
+/**
+ * Table Caption element. Specifies a title of a table.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.caption(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "caption", content = content, id = id, classes = classes)
+
+/**
+ * Citation element. Used to mark up the title of a cited work.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.cite(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "cite", id = id, classes = classes, children = children)
+
+/**
+ * Inline Code element. Represents a short fragment of computer code.
+ *
+ * Rendered in the user agent's default monospace font by default.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.code(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "code", content = content, id = id, classes = classes)
+
+/**
+ * HTML Data List element. Contains a set of `option` elements to represent options to choose from within other controls.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.datalist(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "datalist", id = id, classes = classes, children = children)
+
+/**
+ * Description Details element. Provides the description, definition, or value for the preceding term in a description list.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.dd(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "dd", content = content, id = id, classes = classes)
+
+/**
  * Content Division element. Represents a generic container for content within the HTML document.
  *
  * @since 1.0.0
@@ -90,6 +217,89 @@ fun ContainerTag.div(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "div", id = id, classes = classes, children = children)
+
+/**
+ * Description List element. Encloses a list of group of terms and descriptions.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.dl(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "dl", id = id, classes = classes, children = children)
+
+/**
+ * Description Term element. Description or definition list.
+ *
+ * Usually followed by the `<dd>` element
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.dt(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "dt", content = content, id = id, classes = classes)
+
+/**
+ * Emphasis element. Marks text that has stress emphasis.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.em(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "em", content = content, id = id, classes = classes)
+
+/**
+ * Figure Caption element. Describes a caption or legend description the rest of its parent figure element.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.figcaption(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "figcaption", content = content, id = id, classes = classes)
+
+/**
+ * Figure with Optional Caption element. Represents self-contained content, with an optional caption.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.figure(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "figure", id = id, classes = classes, children = children)
+
+/**
+ * HTML Footer element. Represents a footer for its nearest sectioning root element.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.footer(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "footer", id = id, classes = classes, children = children)
+
+/**
+ * Form element. Represents a document section containing interactive controls for submitting information.
+ *
+ * @param action The URL that processes the form submission
+ * @param method The HTTP method to submit the form with
+ * @since 1.0.1
+ */
+fun ContainerTag.form(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    action: String? = null,
+    method: String? = null,
+    children: ContainerTag.() -> Unit
+) = container(name = "form", id = id, classes = classes, children = children, attributes = arrayOf(Pair("action", action), Pair("method", method)))
 
 /**
  * Level 1 Section Heading element.
@@ -167,6 +377,28 @@ fun ContainerTag.head(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "head", id = id, classes = classes, children = children)
+
+/**
+ * HTML Header element. Represents introductory content. May contain navigation.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.header(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "header", id = id, classes = classes, children = children)
+
+/**
+ * Represents a heading and related content.
+ *
+ * @since 1.0.1
+ */
+fun ContainerTag.hgroup(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "hgroup", id = id, classes = classes, children = children)
 
 /**
  * Horizontal Rule element. Represents a thematic break between paragraph-level elements.
