@@ -425,6 +425,71 @@ fun ContainerTag.i(
 ) = content(name = "i", content = content, id = id, classes = classes)
 
 /**
+ * Image Embed element. Embeds an image into the document.
+ *
+ * @param alt Alternative text description of the image
+ * @param src The image URL
+ * @since 1.0.2
+ */
+fun ContainerTag.img(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    alt: String? = null,
+    src: String? = null
+) = void(name = "img", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("src", src)))
+
+/**
+ * Keyboard Input element. Represents a span of inline text denoting user input from a keyboard.
+ *
+ * Usually represented as monospace text
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.kbd(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "kbd", content = content, id = id, classes = classes)
+
+/**
+ * Label element. Represents a caption for an item.
+ *
+ * @param for Must be a single id for a labelable for element.
+ * @since 1.0.2
+ */
+fun ContainerTag.label(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    `for`: String? = null
+) = content(name = "label", content = content, id = id, classes = classes, attributes = arrayOf(Pair("for", `for`)))
+
+/**
+ * Field Set Legend element. Represents a caption for the content of its parent `<fieldset>`.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.legend(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "legend", content = content, id = id, classes = classes)
+
+/**
+ * List Item element. Represents an item in a list or menu.
+ *
+ * @param value Integer value for the order of this item in an ordered list. Not applicable to unordered lists or menus.
+ * @since 1.0.2
+ */
+fun ContainerTag.li(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    value: String? = null
+) = content(name = "li", content = content, id = id, classes = classes, attributes = arrayOf(Pair("value", value)))
+
+/**
  * External Resource Link element. Represents relationships between the current document, and some external resource.
  *
  * @param rel Specifies the relationship of the link. Denotes how the resource is being linked.
@@ -449,6 +514,30 @@ fun ContainerTag.main(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "main", id = id, classes = classes, children = children)
+
+/**
+ * Mark Text element. Represents text that is marked or highlighted for reference or notation purposes.
+ *
+ * Usually represented by highlighted text.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.mark(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "mark", content = content, id = id, classes = classes)
+
+/**
+ * Menu element. Semantic alternative to `<ul>`.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.menu(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "menu", id = id, classes = classes, children = children)
 
 /**
  * Metadata element. Represents metadata that can not be represented by other meta-related elements.
@@ -481,6 +570,17 @@ fun ContainerTag.nav(
 ) = container(name = "nav", id = id, classes = classes, children = children)
 
 /**
+ * Noscript element. Defines a section of HTML to be inserted if scripting is disabled by the browser.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.noscript(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "noscript", id = id, classes = classes, children = children)
+
+/**
  * Paragraph element.
  *
  * In KtHTML, this invocation of the paragraph element is its "content" variant, only allowing text to be inserted.
@@ -505,6 +605,208 @@ fun ContainerTag.p(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "p", id = id, classes = classes, children = children)
+
+/**
+ * Picture element. Contains zero or more `<source>` elements and one `<img>` element to offer alternative versions of an image.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.picture(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "picture", id = id, classes = classes, children = children)
+
+/**
+ * Preformatted Text element. Represents preformatted text to be presented exact as written in the HTML.
+ *
+ * Usually represented by a monospace font.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.pre(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "pre", content = content, id = id, classes = classes)
+
+/**
+ * Progress Indicator element. Displays an indicator showing the completion progress of a task.
+ *
+ * @param max How much work the task represents. Must be a valid number
+ * @param value How much of the task has been completed. Must be a valid number
+ * @since 1.0.2
+ */
+fun ContainerTag.progress(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    max: String? = null,
+    value: String? = null
+) = content(name = "progress", content = content, id = id, classes = classes)
+
+/**
+ * Ruby Fallback Parenthesis element. Used to provide fall-back parentheses for browsers that do not support display of ruby annotations.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.rp(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "rp", content = content, id = id, classes = classes)
+
+/**
+ * Ruby Text element. Specifies the ruby text component of a ruby annotation
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.rt(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "rt", content = content, id = id, classes = classes)
+
+/**
+ * Ruby Annotation element. Represents small annotations that are rendered above, below or next to a base text, used for showing the pronunciation of East Asian characters.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.ruby(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "ruby", id = id, classes = classes, children = children)
+
+/**
+ * Strikethrough element. Represent things that are no longer relevant or accurate.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.s(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "s", content = content, id = id, classes = classes)
+
+/**
+ * Sample Output element. Used to enclose inline text representing sample output from a computer program.
+ *
+ * Usually rendered with a monospace font.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.samp(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "samp", content = content, id = id, classes = classes)
+
+/**
+ * Script element. Used to embed executable code or data.
+ *
+ * Typically used with JavaScript, but also usable for GLSL (WebGL) or JSON, among others.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.script(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    src: String? = null
+) = content(name = "script", content = content, id = id, classes = classes, attributes = arrayOf(Pair("src", src)))
+
+/**
+ * Generic Section element. Represents a generic standalone section of a document.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.section(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "section", id = id, classes = classes, children = children)
+
+/**
+ * Side Comment element. Represents side comments and small print, like copyright and legal text.
+ *
+ * Usually rendered one font size smaller than the default.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.small(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "small", content = content, id = id, classes = classes)
+
+/**
+ * Content Span element. Represents a generic inline container for phrasing content
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.span(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "span", content = content, id = id, classes = classes)
+
+/**
+ * Strong Importance element. Represents strong importance, seriousness, or urgency.
+ *
+ * Usually rendered as bold text.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.strong(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "strong", content = content, id = id, classes = classes)
+
+/**
+ * Style Information element. Contains style information for a document or part of document.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.style(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "style", content = content, id = id, classes = classes)
+
+/**
+ * Subscript element. Specifies inline text which should be displayed as subscript.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.sub(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "sub", content = content, id = id, classes = classes)
+
+/**
+ * Disclosure Summary element. Specifies a summary, caption, or legend for a `<details>` element.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.summary(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "summary", content = content, id = id, classes = classes)
+
+/**
+ * Superscript element. Specifies inline text which should be displayed as superscript.
+ *
+ * @since 1.0.2
+ */
+fun ContainerTag.sup(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "sup", content = content, id = id, classes = classes)
 
 /**
  * Scalable Vector Graphics element. Represents an SVG file within the HTML structure.

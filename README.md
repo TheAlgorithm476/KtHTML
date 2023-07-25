@@ -30,7 +30,7 @@ repositories {
 ```
 ```kt
 dependencies {
-    implementation("me.thealgorithm476:kthtml:1.0.1")
+    implementation("me.thealgorithm476:kthtml:1.0.2")
 }
 ```
 ```kt
@@ -50,7 +50,7 @@ kotlin {
 <dependency>
     <groupId>me.thealgorithm476</groupId>
     <artifactId>kthtml</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
