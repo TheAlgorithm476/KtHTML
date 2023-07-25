@@ -643,7 +643,7 @@ fun ContainerTag.progress(
     classes: Array<String> = emptyArray(),
     max: String? = null,
     value: String? = null
-) = content(name = "progress", content = content, id = id, classes = classes)
+) = content(name = "progress", content = content, id = id, classes = classes, attributes = arrayOf(Pair("max", max), Pair("value", value)))
 
 /**
  * Ruby Fallback Parenthesis element. Used to provide fall-back parentheses for browsers that do not support display of ruby annotations.
@@ -822,6 +822,78 @@ fun ContainerTag.svg(
 ) = container(name = "svg", id = id, classes = classes, children = children)
 
 /**
+ * Table element. Represents tabular data, comprised of rows and columns
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.table(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "table", id = id, classes = classes, children = children)
+
+/**
+ * Table Body element. Encapsulates a set of table rows.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.tbody(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "tbody", id = id, classes = classes, children = children)
+
+/**
+ * Table Data Cell element. Defines a cell of a table that contains data.
+ *
+ * @param colspan How many columns the cell extends. Defaults to 1, must be a non-negative integer.
+ * @param headers List of strings corresponding to the id attribute of the `<th>` elements that apply. Space-separated.
+ * @param rowspan How many rows the cell extends. Defaults to 1. If 0, it extends until the end of the table section.
+ * @since 1.0.3
+ */
+fun ContainerTag.td(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    colspan: String? = null,
+    headers: String? = null,
+    rowspan: String? = null
+) = content(name = "td", content = content, id = id, classes = classes, attributes = arrayOf(Pair("colspan", colspan), Pair("headers", headers), Pair("rowspan", rowspan)))
+
+/**
+ * Content Template element. Holds HTML that is not to be rendered immediately when a page is loaded, but instantiated using JavaScript.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.template(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "template", id = id, classes = classes, children = children)
+
+/**
+ * Table Foot element. Defines a set of rows summarizing the columns of the table.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.tfoot(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "tfoot", id = id, classes = classes, children = children)
+
+/**
+ * Table Head element. Defines a set of rows defining the head of the columns of the table.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.thead(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "thead", id = id, classes = classes, children = children)
+
+/**
  * Document Title element. Represents the document's title that is shown in a browser tab.
  *
  * @since 1.0.0
@@ -831,6 +903,56 @@ fun ContainerTag.title(
     id: String? = null,
     classes: Array<String> = emptyArray()
 ) = content(name = "title", content = content, id = id, classes = classes)
+
+/**
+ * Table Row element. Defines a row of cells in a table.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.tr(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "tr", id = id, classes = classes, children = children)
+
+/**
+ * Unarticulated Annotation element. Represents a span of inline text which should be rendered in a way that indicates it has a non-textual annotation.
+ *
+ * Usually rendered as underlined text.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.u(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "u", content = content, id = id, classes = classes)
+
+/**
+ * Unordered List element. Represents an unordered list of items.
+ *
+ * Usually rendered as a bulleted list.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.ul(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "ul", id = id, classes = classes, children = children)
+
+/**
+ * Variable element. Represents the name of a variable in a mathematical expression or programming context.
+ *
+ * Usually rendered as italicized text.
+ *
+ * @since 1.0.3
+ */
+fun ContainerTag.`var`(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray()
+) = content(name = "var", content = content, id = id, classes = classes)
 
 /**
  * Word Line Break Opportunity element. Represents a position within text where the browser may optionally break a line.

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "me.thealgorithm476"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
