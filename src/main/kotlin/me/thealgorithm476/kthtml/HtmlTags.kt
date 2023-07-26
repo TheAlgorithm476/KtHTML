@@ -18,7 +18,12 @@ fun html(id: String? = null, classes: Array<String> = emptyArray(), xmlns: Strin
 /**
  * Anchor element. Creates a hyperlink to anything that can be represented by a URL.
  *
+ * @param download Causes the browser to treat the linked URL as a download
  * @param href Specifies where this element should link to when clicked.
+ * @param hreflang Hints at the human language of the linked URL
+ * @param ping List of URLs to which the browser will send 'PING' POST requests when clicked. Space-separated.
+ * @param reffererpolicy How much of the referrer to send when clicked.
+ * @param rel Specifies the relation between the target and this page.
  * @param target Specifies where the linked URL should be displayed. Could be `_self`, `_blank`, `_parent`, or `_top`.
  * @param type Specifies what MIME type the linked URL has.
  * @since 1.0.0
@@ -27,10 +32,15 @@ fun ContainerTag.a(
     content: String = "",
     id: String? = null,
     classes: Array<String> = emptyArray(),
+    download: String? = null,
     href: String? = null,
+    hreflang: String? = null,
+    ping: String? = null,
+    reffererpolicy: String? = null,
+    rel: String? = null,
     target: String? = null,
     type: String? = null
-) = content(name = "a", content = content, id = id, classes = classes, attributes = arrayOf(Pair("href", href), Pair("target", target), Pair("type", type)))
+) = content(name = "a", content = content, id = id, classes = classes, attributes = arrayOf(Pair("download", download), Pair("href", href), Pair("hreflang", hreflang), Pair("ping", ping), Pair("referrerpolicy", reffererpolicy), Pair("rel", rel), Pair("target", target), Pair("type", type)))
 
 /**
  * Abbreviation element. Represents an abbreviation or acronym.
@@ -57,6 +67,35 @@ fun ContainerTag.address(
 ) = container(name = "address", id = id, classes = classes, children = children)
 
 /**
+ * Image Map Area element. Represents an area inside an image map that has predefined clickable areas.
+ *
+ * @param alt Text Alternative to display on browsers that do not display images. Only required if [href] is set.
+ * @param coords Details the coordinates of the shape attribute. Only required is [shape] is not default.
+ * @param download If present, this attribute indicates that the link is used for downloading a resource.
+ * @param href Target URL.
+ * @param ping List of URLs to which POST-requests with the body 'PING' will be sent when clicked. Space-separated.
+ * @param reffererpolicy String indicating which referrer to use when fetching the resource.Defaults to 'strict-origin-when-cross-origin'
+ * @param rel Specifies the relationship of the target to this page. Space-separated list of link types. Only use if [href] is set.
+ * @param shape The shape of the area. Defaults to 'default'.
+ * @param target Defines the browsing context in which the URL should be traversed through. Defaults to '_self'. Only use if [href] is set.
+ * @since 1.0.4
+ */
+fun ContainerTag.area(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    alt: String? = null,
+    coords: String? = null,
+    download: String? = null,
+    href: String? = null,
+    ping: String? = null,
+    reffererpolicy: String? = null,
+    rel: String? = null,
+    shape: String? = null,
+    target: String? = null
+) = void(name = "area", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("coords", coords), Pair("download", download), Pair("href", href), Pair("ping", ping), Pair("reffererpolicy", reffererpolicy), Pair("rel", rel), Pair("shape", shape), Pair("target", target)))
+
+/**
  * Article Contents element. Represents a self-contained composition in a document, page, application, or site.
  *
  * @since 1.0.1
@@ -81,6 +120,23 @@ fun ContainerTag.aside(
 ) = container(name = "aside", id = id, classes = classes, children = children)
 
 /**
+ * Embed Audio Element. Used to embed sound content in documents.
+ *
+ * @param crossorigin Indicates whether or not to use CORS to fetch the audio.
+ * @param preload Provides a hint to indicate what the best user experience could be.
+ * @param src URL to the audio file.
+ * @since 1.0.4
+ */
+fun ContainerTag.audio(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit,
+    crossorigin: String? = null,
+    preload: String? = null,
+    src: String? = null
+) = container(name = "audio", id = id, classes = classes, children = children, attributes = arrayOf(Pair("crossorigin", crossorigin), Pair("preload", preload), Pair("src", src)))
+
+/**
  * Bring Attention To element. Represents an element that should draw the reader's attention to its contents.
  *
  * Usually represented as bold text.
@@ -94,6 +150,21 @@ fun ContainerTag.b(
 ) = content(name = "b", content = content, id = id, classes = classes)
 
 /**
+ * Document Base URL element. Specifies the base URL to use for all relative URLs in a document.
+ *
+ * @param href The base URL to be used throughout the document.
+ * @param target The default browsing context to show the results of navigation in. Defaults to '_self'.
+ * @since 1.0.4
+ */
+fun ContainerTag.base(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    href: String? = null,
+    target: String? = null
+) = void(name = "base", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("href", href), Pair("target", target)))
+
+/**
  * Bidirectional Isolate element. Represents text that should be treated in isolation from its surrounding text
  *
  * @since 1.0.1
@@ -103,6 +174,19 @@ fun ContainerTag.bdi(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "bdi", id = id, classes = classes, children = children)
+
+/**
+ * Bidirectional Text Override element. Overrides the directionality of text.
+ *
+ * @param dir The direction the text should be rendered in.
+ * @since 1.0.4
+ */
+fun ContainerTag.bdo(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    dir: String? = null
+) = content(name = "bdo", content = content, id = id, classes = classes, attributes = arrayOf(Pair("dir", dir)))
 
 /**
  * Block Quotation element. Indicates that the enclosed elements are an extended quotation.
@@ -120,13 +204,49 @@ fun ContainerTag.blockquote(
 /**
  * Document Body element. Represents the content of an HTML Document.
  *
+ * @param onafterprint Called the document has been printed.
+ * @param onbeforeprint Called when printing of the document has been requested.
+ * @param onbeforeunload Called when the document is about to be unloaded.
+ * @param onblur Called when the document loses focus.
+ * @param onerror Called when the document fails to load properly.
+ * @param onfocus Called when the document receives focus.
+ * @param onhashchange Called when the '#' part of the URL changes.
+ * @param onlanguagechange Called when the preferred language is changed.
+ * @param onload Called when the document is finished loading.
+ * @param onmessage Called when the document receives a message.
+ * @param onoffline Called when network connectivity is lost.
+ * @param ononline Called when network connectivity is restored.
+ * @param onpopstate Called when the user navigates session history.
+ * @param onredo Called when the user moves forward in undo transaction history.
+ * @param onresize Called when the document resizes.
+ * @param onstorage Called when the storage area changes.
+ * @param onundo Called when the user moves backwards in undo transaction history.
+ * @param onunload Called when the document is about to be unloaded.
  * @since 1.0.0
  */
 fun ContainerTag.body(
     id: String? = null,
     classes: Array<String> = emptyArray(),
+    onafterprint: String? = null,
+    onbeforeprint: String? = null,
+    onbeforeunload: String? = null,
+    onblur: String? = null,
+    onerror: String? = null,
+    onfocus: String? = null,
+    onhashchange: String? = null,
+    onlanguagechange: String? = null,
+    onload: String? = null,
+    onmessage: String? = null,
+    onoffline: String? = null,
+    ononline: String? = null,
+    onpopstate: String? = null,
+    onredo: String? = null,
+    onresize: String? = null,
+    onstorage: String? = null,
+    onundo: String? = null,
+    onunload: String? = null,
     children: ContainerTag.() -> Unit
-) = container(name = "body", id = id, classes = classes, children = children)
+) = container(name = "body", id = id, classes = classes, children = children, attributes = arrayOf(Pair("onafterprint", onafterprint), Pair("onbeforeprint", onbeforeprint), Pair("onbeforeunload", onbeforeunload), Pair("onblur", onblur), Pair("onerror", onerror), Pair("onfocus", onfocus), Pair("onhashchange", onhashchange), Pair("onlanguagechange", onlanguagechange), Pair("onload", onload), Pair("onmessage", onmessage), Pair("onoffline", onoffline), Pair("ononline", ononline), Pair("onpopstate", onpopstate), Pair("onredo", onredo), Pair("onresize", onresize), Pair("onstorage", onstorage), Pair("onundo", onundo), Pair("onunload", onunload)))
 
 /**
  * Line Break element. Represents a carriage return in text.
@@ -142,13 +262,48 @@ fun ContainerTag.br(
 /**
  * Button element. Represents an interactive element activated by a user.
  *
+ * @param form Form Id to associate this button with.
+ * @param formaction URL that processes information submitted by this button. Overrides the `action` attribute on forms.
+ * @param formenctype Specifies how to encode the form data to be submitted. Defaults to 'application/x-www-form-urlencoded'. Only applicable of submit button.
+ * @param formmethod Specifies the HTTP method used to submit the form. Defaults to the attribute set in the parent form.
+ * @param formtarget Indication of where to display the response. Defaults to '_self'.
+ * @param name Name of the button.
+ * @param popovertarget Id of the popover element to control.
+ * @param popovertargetaction Specifies the action to be performed on the popover element.
+ * @param type The behaviour of the button. Defaults to 'submit' if part of a form, 'button' otherwise.
+ * @param value The value associated with the button.
  * @since 1.0.1
  */
 fun ContainerTag.button(
     content: String = "",
     id: String? = null,
-    classes: Array<String> = emptyArray()
-) = content(name = "button", content = content, id = id, classes = classes)
+    classes: Array<String> = emptyArray(),
+    form: String? = null,
+    formaction: String? = null,
+    formenctype: String? = null,
+    formmethod: String? = null,
+    formtarget: String? = null,
+    name: String? = null,
+    popovertarget: String? = null,
+    popovertargetaction: String? = null,
+    type: String? = null,
+    value: String? = null
+) = content(name = "button", content = content, id = id, classes = classes, attributes = arrayOf(Pair("form", form), Pair("formaction", formaction), Pair("formenctype", formenctype), Pair("formmethod", formmethod), Pair("formtarget", formtarget), Pair("name", name), Pair("popovertarget", popovertarget), Pair("popovertargetaction", popovertargetaction), Pair("type", type), Pair("value", value)))
+
+/**
+ * Graphics Canvas element. Used to draw graphics using the canvas scripting API or WebGL.
+ *
+ * @param height Height of the coordinate space. Defaults to 150.
+ * @param width Width of the coordinate space. Defaults to 300.
+ * @since 1.0.4
+ */
+fun ContainerTag.canvas(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    height: String? = null,
+    width: String? = null
+) = content(name = "canvas", content = content, id = id, classes = classes, attributes = arrayOf(Pair("height", height), Pair("width", width)))
 
 /**
  * Table Caption element. Specifies a title of a table.
