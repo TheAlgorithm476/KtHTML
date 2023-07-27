@@ -341,6 +341,45 @@ fun ContainerTag.code(
 ) = content(name = "code", content = content, id = id, classes = classes)
 
 /**
+ * Table Column element. Defines a column within a table.
+ *
+ * @param span Number of consecutive columns the element span. Must be a positive integer. Defaults to 1.
+ * @since 1.0.5
+ */
+fun ContainerTag.col(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    span: String? = null
+) = void(name = "col", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("span", span)))
+
+/**
+ * Table Column Group element. Defines a group of columns within a table.
+ *
+ * @param span Number of consecutive columns the element spans. Must be a positive integer. Defaults to 1.
+ * @since 1.0.5
+ */
+fun ContainerTag.colgroup(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    span: String? = null,
+    children: ContainerTag.() -> Unit
+) = container(name = "colgroup", id = id, classes = classes, children = children, attributes = arrayOf(Pair("span", span)))
+
+/**
+ * Data element. Links a piece of content with a machine-readable translation.
+ *
+ * @param value The machine-readable translation of the content.
+ * @since 1.0.5
+ */
+fun ContainerTag.data(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    value: String? = null
+) = content(name = "data", content = content, id = id, classes = classes, attributes = arrayOf(Pair("value", value)))
+
+/**
  * HTML Data List element. Contains a set of `option` elements to represent options to choose from within other controls.
  *
  * @since 1.0.1
@@ -361,6 +400,56 @@ fun ContainerTag.dd(
     id: String? = null,
     classes: Array<String> = emptyArray()
 ) = content(name = "dd", content = content, id = id, classes = classes)
+
+/**
+ * Deleted Text element. Represents a range of text that has been deleted from a document.
+ *
+ * @param cite Link to resource explaining the change.
+ * @param datetime Time and date of the change. Must be a valid data string, with optional time.
+ * @since 1.0.5
+ */
+fun ContainerTag.del(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    cite: String? = null,
+    datetime: String? = null
+) = content(name = "del", content = content, id = id, classes = classes, attributes = arrayOf(Pair("cite", cite), Pair("datetime", datetime)))
+
+/**
+ * Details Disclosure element. Disclosure widget in which information is only visible when the widget is toggled open.
+ *
+ * @since 1.0.5
+ */
+fun ContainerTag.details(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "details", id = id, classes = classes, children = children)
+
+/**
+ * Definition element. Indicates a term being defined within the context of a definition phrase or sentence.
+ *
+ * @param title If set, then this is the term being defined.
+ * @since 1.0.5
+ */
+fun ContainerTag.dfn(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    title: String? = null
+) = content(name = "dfn", content = content, id = id, classes = classes, attributes = arrayOf(Pair("title", title)))
+
+/**
+ * Dialog element. Represents a dialog box, or interactive components such as alerts, inspectors, or subwindows.
+ *
+ * @since 1.0.5
+ */
+fun ContainerTag.dialog(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    children: ContainerTag.() -> Unit
+) = container(name = "dialog", id = id, classes = classes, children = children)
 
 /**
  * Content Division element. Represents a generic container for content within the HTML document.
@@ -407,6 +496,40 @@ fun ContainerTag.em(
     id: String? = null,
     classes: Array<String> = emptyArray()
 ) = content(name = "em", content = content, id = id, classes = classes)
+
+/**
+ * Embed External Content element. Embeds external content at the specified point in the document.
+ *
+ * @param height The displayed height of the resource. In CSS Pixels. Must be an absolute value.
+ * @param src URL of the embedded resource.
+ * @param type The MIME Type.
+ * @param width The displayed width of the resource. In CSS Pixels. Must be an absolute value.
+ * @since 1.0.5
+ */
+fun ContainerTag.embed(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    height: String? = null,
+    src: String? = null,
+    type: String? = null,
+    width: String? = null
+) = void(name = "embed", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("height", height), Pair("src", src), Pair("type", type), Pair("width", width)))
+
+/**
+ * Field Set element. Groups several controls as well as labels within a web form.
+ *
+ * @param form Id attribute of the form this element is part of.
+ * @param name The name associated with this element.
+ * @since 1.0.5
+ */
+fun ContainerTag.fieldset(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    form: String? = null,
+    name: String? = null,
+    children: ContainerTag.() -> Unit
+) = container(name = "fieldset", id = id, classes = classes, children = children, attributes = arrayOf(Pair("form", form), Pair("name", name)))
 
 /**
  * Figure Caption element. Describes a caption or legend description the rest of its parent figure element.
