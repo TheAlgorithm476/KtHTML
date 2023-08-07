@@ -22,7 +22,7 @@ fun html(id: String? = null, classes: Array<String> = emptyArray(), xmlns: Strin
  * @param href Specifies where this element should link to when clicked.
  * @param hreflang Hints at the human language of the linked URL
  * @param ping List of URLs to which the browser will send 'PING' POST requests when clicked. Space-separated.
- * @param reffererpolicy How much of the referrer to send when clicked.
+ * @param referrerpolicy How much of the referrer to send when clicked.
  * @param rel Specifies the relation between the target and this page.
  * @param target Specifies where the linked URL should be displayed. Could be `_self`, `_blank`, `_parent`, or `_top`.
  * @param type Specifies what MIME type the linked URL has.
@@ -36,11 +36,11 @@ fun ContainerTag.a(
     href: String? = null,
     hreflang: String? = null,
     ping: String? = null,
-    reffererpolicy: String? = null,
+    referrerpolicy: String? = null,
     rel: String? = null,
     target: String? = null,
     type: String? = null
-) = content(name = "a", content = content, id = id, classes = classes, attributes = arrayOf(Pair("download", download), Pair("href", href), Pair("hreflang", hreflang), Pair("ping", ping), Pair("referrerpolicy", reffererpolicy), Pair("rel", rel), Pair("target", target), Pair("type", type)))
+) = content(name = "a", content = content, id = id, classes = classes, attributes = arrayOf(Pair("download", download), Pair("href", href), Pair("hreflang", hreflang), Pair("ping", ping), Pair("referrerpolicy", referrerpolicy), Pair("rel", rel), Pair("target", target), Pair("type", type)))
 
 /**
  * Abbreviation element. Represents an abbreviation or acronym.
@@ -74,7 +74,7 @@ fun ContainerTag.address(
  * @param download If present, this attribute indicates that the link is used for downloading a resource.
  * @param href Target URL.
  * @param ping List of URLs to which POST-requests with the body 'PING' will be sent when clicked. Space-separated.
- * @param reffererpolicy String indicating which referrer to use when fetching the resource.Defaults to 'strict-origin-when-cross-origin'
+ * @param referrerpolicy String indicating which referrer to use when fetching the resource.Defaults to 'strict-origin-when-cross-origin'
  * @param rel Specifies the relationship of the target to this page. Space-separated list of link types. Only use if [href] is set.
  * @param shape The shape of the area. Defaults to 'default'.
  * @param target Defines the browsing context in which the URL should be traversed through. Defaults to '_self'. Only use if [href] is set.
@@ -89,11 +89,11 @@ fun ContainerTag.area(
     download: String? = null,
     href: String? = null,
     ping: String? = null,
-    reffererpolicy: String? = null,
+    referrerpolicy: String? = null,
     rel: String? = null,
     shape: String? = null,
     target: String? = null
-) = void(name = "area", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("coords", coords), Pair("download", download), Pair("href", href), Pair("ping", ping), Pair("reffererpolicy", reffererpolicy), Pair("rel", rel), Pair("shape", shape), Pair("target", target)))
+) = void(name = "area", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("coords", coords), Pair("download", download), Pair("href", href), Pair("ping", ping), Pair("referrerpolicy", referrerpolicy), Pair("rel", rel), Pair("shape", shape), Pair("target", target)))
 
 /**
  * Article Contents element. Represents a self-contained composition in a document, page, application, or site.
@@ -567,17 +567,29 @@ fun ContainerTag.footer(
 /**
  * Form element. Represents a document section containing interactive controls for submitting information.
  *
+ * @param accept_charset List of character encodings that the server accepts. Space-separated.
+ * @param autocomplete Whether or not input elements can have their values autocompleted by the browser. Either `off` or `on`.
+ * @param name The name of the form.
+ * @param rel Controls the annotations and kind of links the form can create.
  * @param action The URL that processes the form submission
+ * @param enctype MIME Type in which the form is submitted.
  * @param method The HTTP method to submit the form with
+ * @param target Where to display the response of the form. Defaults to `_self`.
  * @since 1.0.1
  */
 fun ContainerTag.form(
     id: String? = null,
     classes: Array<String> = emptyArray(),
+    accept_charset: String? = null,
+    autocomplete: String? = null,
+    name: String? = null,
+    rel: String? = null,
     action: String? = null,
+    enctype: String? = null,
     method: String? = null,
+    target: String? = null,
     children: ContainerTag.() -> Unit
-) = container(name = "form", id = id, classes = classes, children = children, attributes = arrayOf(Pair("action", action), Pair("method", method)))
+) = container(name = "form", id = id, classes = classes, children = children, attributes = arrayOf(Pair("accept-charset", accept_charset), Pair("autocomplete", autocomplete), Pair("name", name), Pair("rel", rel), Pair("action", action), Pair("enctype", enctype), Pair("method", method), Pair("target", target)))
 
 /**
  * Level 1 Section Heading element.
@@ -703,10 +715,51 @@ fun ContainerTag.i(
 ) = content(name = "i", content = content, id = id, classes = classes)
 
 /**
+ * Inline Frame element. Represents another HTML page being embedded into the current one.
+ *
+ * @param allow Specifies a Permissions Policy for this frame.
+ * @param allowfullscreen If set to `true`, the iframe can activate fullscreen mode. Replaced by [allow], and setting `fullscreen`.
+ * @param height The height of the frame, in CSS pixels. Defaults to 150.
+ * @param loading How the frame should be loaded. Either `lazy` or `eager`.
+ * @param name The name for the embedded page.
+ * @param referrerpolicy Which referrer to send when fetching the frame source.
+ * @param sandbox Sets some of the properties of the frame sandbox.
+ * @param src The URL to embed.
+ * @param srcdoc Inline HTML to embed, overriding [src].
+ * @param width The width of the frame, in CSS pixels. Defaults to 300.
+ * @since 1.0.6
+ */
+fun ContainerTag.iframe(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    allow: String? = null,
+    allowfullscreen: String? = null,
+    height: String? = null,
+    loading: String? = null,
+    name: String? = null,
+    referrerpolicy: String? = null,
+    sandbox: String? = null,
+    src: String? = null,
+    srcdoc: String? = null,
+    width: String? = null
+) = content(name = "iframe", content = content, id = id, classes = classes, attributes = arrayOf(Pair("allow", allow), Pair("allowfullscreen", allowfullscreen), Pair("height", height), Pair("loading", loading), Pair("name", name), Pair("referrerpolicy", referrerpolicy), Pair("sandbox", sandbox), Pair("src", src), Pair("srcdoc", srcdoc), Pair("width", width)))
+
+/**
  * Image Embed element. Embeds an image into the document.
  *
  * @param alt Alternative text description of the image
+ * @param crossorigin Whether or not the image fetching should be done using CORS.
+ * @param decoding Browser hint to image decoding. Either `sync`, `async`, or `auto`. Defaults to auto.
+ * @param elementtiming Makes the value become an identifier for the PerformanceElementTiming API.
+ * @param height Intrinsic image height, in pixels. Integer without unit.
+ * @param loading Specifies the way the image should be loaded. Either `eager` or `lazy`. Defaults to `eager`.
+ * @param referrerpolicy Indication to which referrer to use when fetching the resource.
+ * @param sizes Indication of source set sizes. Comma-separated.
  * @param src The image URL
+ * @param srcset List of possible image sources for the browser to use. Comma-separated.
+ * @param width Intrinsic image width, in pixels. Integer without unit.
+ * @param usemap Partial URL of the image map associated with the element.
  * @since 1.0.2
  */
 fun ContainerTag.img(
@@ -714,8 +767,91 @@ fun ContainerTag.img(
     id: String? = null,
     classes: Array<String> = emptyArray(),
     alt: String? = null,
-    src: String? = null
-) = void(name = "img", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("src", src)))
+    crossorigin: String? = null,
+    decoding: String? = null,
+    elementtiming: String? = null,
+    height: String? = null,
+    loading: String? = null,
+    referrerpolicy: String? = null,
+    sizes: String? = null,
+    src: String? = null,
+    srcset: String? = null,
+    width: String? = null,
+    usemap: String? = null
+) = void(name = "img", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("alt", alt), Pair("crossorigin", crossorigin), Pair("decoding", decoding), Pair("elementtiming", elementtiming), Pair("height", height), Pair("loading", loading), Pair("referrerpolicy", referrerpolicy), Pair("sizes", sizes), Pair("src", src), Pair("srcset", srcset), Pair("width", width), Pair("usemap", usemap)))
+
+/**
+ * Form Input element. Used to create interactive controls for web-based forms.
+ *
+ * @param accept Hints at the expected file type. Only valid if [type] is `file`.
+ * @param alt Text representation of the image. Only valid if [type] is `image`.
+ * @param autocomplete Whether or not to use form autofill. Only valid if [type] is not `checkbox`, `radio`, or a button.
+ * @param capture Media capture input method. Only valid if [type] is `file`.
+ * @param dirname Name of the field to use for sending. Only valid if [type] is `search` or `text`.
+ * @param form Id of the form this element belongs to.
+ * @param formaction URL to use for form submission. Only valid if [type] is `image` or `submit`.
+ * @param formenctype Form data encoding type used for submission. Only valid if [type] is `image` or `submit`.
+ * @param formmethod HTTP Method used for submission. Only valid if [type] is `image` or `submit`.
+ * @param formnovalidate Whether or not to bypass form validation. Only valid if [type] is `image` or `submit`.
+ * @param formtarget Which browsing context to use for submission. Only valid if [type] is `image` or `submit`.
+ * @param height The height of the image. Only valid if [type] is `image`.
+ * @param inputmode Provides a hint to browsers of the type of virtual keyboard to use.
+ * @param list Value of the Id attribute of the datalist of autocomplete options. Only valid if [type] is not `hidden`, `password`, `checkbox`, `radio`, or a button.
+ * @param max Maximum value. Only valid if [type] is `date`, `month`, `week`, `time`, `datetime-local`, `number`, or `range`.
+ * @param maxlength Maximum length, in number of characters. Only valid if [type] is `text`, `search`, `url`, `tel`, `email`, or `password`.
+ * @param min Minimum value. Only valid if [type] is `date`, `month`, `week`, `time`, `datetime-local`, `number`, or `range`.
+ * @param minlength Minimum length, in number of characters. Only valid if [type] is `text`, `search`, `url`, `tel`, `email`, or `password`.
+ * @param name The name of the control.
+ * @param pattern Pattern that the value has to match. Only valid if [type] is `text`, `search`, `url`, `tel`, `email`, or `password`.
+ * @param placeholder Text to show if no value is present. Only valid if [type] is `text`, `search`, `url`, `tel`, `email`, `password`, or `number`.
+ * @param popovertarget Designates a button element as a popover control. Only valid if [type] is `button`.
+ * @param popovertargetaction Action that the popover control should perform. Only valid if [type] is `button`.
+ * @param size Control size. Only valid if [type] is `text`, `search`, `url`, `tel`, `email`, or `password`.
+ * @param src Src attribute of the image. Only valid if [type] is `image`.
+ * @param step Incremental values which are valid. Only valid if [type] is `date`, `month`, `week`, `time`, `datetime-local`, `number`, or `range`.
+ * @param tabindex Whether or not the element should be focusable, and if it should participate in keyboard navigation.
+ * @param title Advisory information for the element. May be represented as a tooltip.
+ * @param type Form control type.
+ * @param value Initial control value. Only valid if [type] is not `image`.
+ * @param width Image width attribute. Only valid if [type] is `image`.
+ * @since 1.0.6
+ */
+fun ContainerTag.input(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    accept: String? = null,
+    alt: String? = null,
+    autocomplete: String? = null,
+    capture: String? = null,
+    dirname: String? = null,
+    form: String? = null,
+    formaction: String? = null,
+    formenctype: String? = null,
+    formmethod: String? = null,
+    formnovalidate: String? = null,
+    formtarget: String? = null,
+    height: String? = null,
+    inputmode: String? = null,
+    list: String? = null,
+    max: String? = null,
+    maxlength: String? = null,
+    min: String? = null,
+    minlength: String? = null,
+    name: String? = null,
+    pattern: String? = null,
+    placeholder: String? = null,
+    popovertarget: String? = null,
+    popovertargetaction: String? = null,
+    size: String? = null,
+    src: String? = null,
+    step: String? = null,
+    tabindex: String? = null,
+    title: String? = null,
+    type: String? = null,
+    value: String? = null,
+    width: String? = null
+) = void(name = "input", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("accept", accept), Pair("alt", alt), Pair("autocomplete", autocomplete), Pair("capture", capture), Pair("dirname", dirname), Pair("form", form), Pair("formaction", formaction), Pair("formenctype", formenctype), Pair("formmethod", formmethod), Pair("formnovalidate", formnovalidate), Pair("formtarget", formtarget), Pair("height", height), Pair("inputmode", inputmode), Pair("list", list), Pair("max", max), Pair("maxlength", maxlength), Pair("min", min), Pair("minlength", minlength), Pair("name", name), Pair("pattern", pattern), Pair("placeholder", placeholder), Pair("popovertarget", popovertarget), Pair("popovertargetaction", popovertargetaction), Pair("size", size), Pair("src", src), Pair("step", step), Pair("tabindex", tabindex), Pair("title", title), Pair("type", type), Pair("value", value), Pair("width", width)))
 
 /**
  * Keyboard Input element. Represents a span of inline text denoting user input from a keyboard.
@@ -1161,6 +1297,27 @@ fun ContainerTag.tfoot(
 ) = container(name = "tfoot", id = id, classes = classes, children = children)
 
 /**
+ * Table Header element. Defines a cell as the header of a group of cells.
+ *
+ * @param abbr Short abbreviated description of cell content.
+ * @param colspan How many columns the cell extends. Non-negative integer. Defaults to 1.
+ * @param headers IDs to applicable `th` elements. Space-separated
+ * @param rowspan How many rows the cell extends. Non-negative integer. Defaults to 1.
+ * @param scope Cells that the element relates to. Enumerated attribute.
+ * @since 1.0.6
+ */
+fun ContainerTag.th(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    abbr: String? = null,
+    colspan: String? = null,
+    headers: String? = null,
+    rowspan: String? = null,
+    scope: String? = null
+) = content(name = "th", content = content, id = id, classes = classes, attributes = arrayOf(Pair("abbr", abbr), Pair("colspan", colspan), Pair("headers", headers), Pair("rowspan", rowspan), Pair("scope", scope)))
+
+/**
  * Table Head element. Defines a set of rows defining the head of the columns of the table.
  *
  * @since 1.0.3
@@ -1170,6 +1327,19 @@ fun ContainerTag.thead(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "thead", id = id, classes = classes, children = children)
+
+/**
+ * (Date) Time element. Represents a specific period in time.
+ *
+ * @param datetime Machine-readable format of the date.
+ * @since 1.0.6
+ */
+fun ContainerTag.time(
+    content: String = "",
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    datetime: String? = null
+) = content(name = "time", content = content, id = id, classes = classes, attributes = arrayOf(Pair("datetime", datetime)))
 
 /**
  * Document Title element. Represents the document's title that is shown in a browser tab.
@@ -1192,6 +1362,25 @@ fun ContainerTag.tr(
     classes: Array<String> = emptyArray(),
     children: ContainerTag.() -> Unit
 ) = container(name = "tr", id = id, classes = classes, children = children)
+
+/**
+ * Embed Text Track element. Used as a child on media elements. Lets you specify timed text tracks, for subtitles.
+ *
+ * @param kind How it's meant to be used. Defaults to `subtitles`.
+ * @param label User-readable title of the text track.
+ * @param src URL to the .vtt file
+ * @param srclang Language of the subtitles.
+ * @since 1.0.6
+ */
+fun ContainerTag.track(
+    slash: Boolean = false,
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    kind: String? = null,
+    label: String? = null,
+    src: String? = null,
+    srclang: String? = null
+) = void(name = "track", slash = slash, id = id, classes = classes, attributes = arrayOf(Pair("kind", kind), Pair("label", label), Pair("src", src), Pair("srclang", srclang)))
 
 /**
  * Unarticulated Annotation element. Represents a span of inline text which should be rendered in a way that indicates it has a non-textual annotation.
@@ -1231,6 +1420,29 @@ fun ContainerTag.`var`(
     id: String? = null,
     classes: Array<String> = emptyArray()
 ) = content(name = "var", content = content, id = id, classes = classes)
+
+/**
+ * Video Embed element. Embeds a media player into the page, that supports video playback.
+ *
+ * @param crossorigin Indicates whether or not to use CORS to fetch the related video.
+ * @param height The height of the player, in CSS pixels.
+ * @param poster URL to an image to be shown whilst the video is loading.
+ * @param preload Provides a hint about what the site's author thinks the best user experience will be.
+ * @param src URL of the video file.
+ * @param width Width of the player, in CSS pixels.
+ * @since 1.0.6
+ */
+fun ContainerTag.video(
+    id: String? = null,
+    classes: Array<String> = emptyArray(),
+    crossorigin: String? = null,
+    height: String? = null,
+    poster: String? = null,
+    preload: String? = null,
+    src: String? = null,
+    width: String? = null,
+    children: ContainerTag.() -> Unit
+) = container(name = "video", id = id, classes = classes, children = children, attributes = arrayOf(Pair("crossorigin", crossorigin), Pair("height", height), Pair("poster", poster), Pair("preload", preload), Pair("src", src), Pair("width", width)))
 
 /**
  * Word Line Break Opportunity element. Represents a position within text where the browser may optionally break a line.
